@@ -1,0 +1,38 @@
+<h2 class="content-subhead">Search</h2>
+
+<form action="/search" method="get">
+  <input name="query" value="<%= params[:query] %>">
+  <button type="submit">Search</button>
+</form>
+
+<ul>
+  <% results = matching_chapters(@query) %>
+  <% if results.nil? %>
+
+  <% elsif results.empty? %>
+    <p>Sorry, no results were found.</p>
+  <% else %>
+    <% @table_of_contents.each_with_index do |chapter, index| %>
+      <% if results.include?(index + 1)%>
+        <li>
+          <a href="/chapters/<%= index + 1%>"><%= chapter %></a>
+	    <ul>
+	      
+	    </ul>
+        </li>
+      <% end %>
+    <% end %>
+  <% end %>
+</ul>
+
+
+Add ID elements to all of the paragraphs of the chapters 
+
+Write another helper method called specific matches 
+  Have this method take parameters for the current chapter and the query
+
+Within this method, load the txt file for the current chapter into a variable 
+  Create an array
+  For every match to the query in the text file, 
+  
+  
